@@ -43,14 +43,18 @@ dependencies {
     // Including 3rd party libraries (Cicerone, Fuel, Gson)
     implementation "ru.terrakok.cicerone:cicerone:$rootProject.ext.cicerone_version"
     implementation "com.github.kittinunf.fuel:fuel-android:$rootProject.ext.fuel_version"
-    implementation "com.github.kittinunf.fuel:fuel-gson:$rootProject.ext.fuel_version"   // Gson parsing
+    implementation "com.github.kittinunf.fuel:fuel-gson:$rootProject.ext.fuel_version"
+    // Gson parsing
     //--- Dagger2 core dependencies
     implementation "com.google.dagger:dagger:$rootProject.ext.dagger2_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2_version"   // Only for Java
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2_version"
+    // Only for Java
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2_version"
     //--- Dagger2 Android dependencies
     implementation "com.google.dagger:dagger-android-support:$rootProject.ext.dagger2_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.dagger2_version"   // Only for Java
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.dagger2_version"
+    // Only for Java
     kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.dagger2_version"
     // Required -- JUnit 4 framework and Kotlin for testing
     testImplementation "junit:junit:$rootProject.ext.junit_version"
