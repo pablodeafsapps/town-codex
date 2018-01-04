@@ -3,6 +3,7 @@ package com.altran.towncodex
 import android.app.Activity
 import android.app.Application
 
+import com.altran.towncodex.di.DaggerAppComponent
 
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -21,7 +22,7 @@ class BaseApplication : Application(), HasActivityInjector {
     }
 
     @Inject
-    lateinit var activityInjector : DispatchingAndroidInjector<Activity>
+    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
     // Routing layer (VIPER)
     lateinit var cicerone: Cicerone<Router>
 
@@ -33,7 +34,7 @@ class BaseApplication : Application(), HasActivityInjector {
         super.onCreate()
 
         INSTANCE = this
-//        DaggerAppComponent.builder().application(this).build().inject(this)
+        DaggerAppComponent.builder().application(this).build().inject(this)
         this.initCicerone()
     }
 

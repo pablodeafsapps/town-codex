@@ -1,8 +1,10 @@
 package com.altran.towncodex.di
 
 import android.app.Application
+
 import com.altran.towncodex.BaseApplication
 import com.altran.towncodex.main.MainContract
+
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
