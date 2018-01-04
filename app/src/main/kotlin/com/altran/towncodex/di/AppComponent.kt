@@ -19,6 +19,7 @@ interface AppComponent {
 
     fun inject(app: BaseApplication)
     fun inject(presenter: MainContract.Presenter)
+    fun inject(interactor: MainContract.Interactor)
 
     @Component.Builder
     interface Builder {

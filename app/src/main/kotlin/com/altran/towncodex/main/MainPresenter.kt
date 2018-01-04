@@ -1,5 +1,7 @@
 package com.altran.towncodex.main
 
+import android.app.Activity
+import android.widget.Toast
 import com.altran.towncodex.BaseApplication
 import com.altran.towncodex.di.DaggerAppComponent
 import com.altran.towncodex.model.Inhabitant
@@ -24,13 +26,14 @@ class MainPresenter @Inject constructor() : MainContract.Presenter, MainContract
     override fun onViewCreated() {
         view.showLoading()
         interactor.setOutputEntity(this)
+        interactor.loadInhabitantsList()
     }
 
     override fun onQuerySuccess(data: List<Inhabitant>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(view as Activity, "Success!!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onQueryError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(view as Activity, "Error!!", Toast.LENGTH_SHORT).show()
     }
 }

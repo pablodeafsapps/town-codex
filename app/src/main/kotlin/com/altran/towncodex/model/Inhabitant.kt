@@ -6,11 +6,11 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Inhabitant(internal val id: Int, internal val name: String,
-                      private @SerializedName("thumbnail") val image: String,
-                      private val age: Int, private val weight: Float, private val height: Float,
-                      private @SerializedName("hair_color") val hairColor: String,
-                      private val professions: List<String>,
-                      private val friends: List<String>) : Parcelable {
+                      internal @SerializedName("thumbnail") val image: String,
+                      internal val age: Int, private val weight: Float, private val height: Float,
+                      internal @SerializedName("hair_color") val hairColor: String,
+                      internal val professions: List<String>,
+                      internal val friends: List<String>) : Parcelable {
 
     constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readString(), parcel.readString(),
             parcel.readInt(), parcel.readFloat(), parcel.readFloat(), parcel.readString(),

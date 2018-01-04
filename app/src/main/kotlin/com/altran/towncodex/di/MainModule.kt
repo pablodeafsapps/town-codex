@@ -8,6 +8,6 @@ import javax.inject.Named
 @Module
 class MainModule {
     @Provides
-    @Named("name")
-    fun provideUrl(): String = "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json"
+    @Named("dataUrl")
+    fun provideDataUrl(): String = "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json"
 }
