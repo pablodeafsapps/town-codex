@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    tools:context="com.altran.towncodex.detail.DetailActivity">
+
+    <include
+        android:id="@+id/toolbar_view"
+        layout="@layout/toolbar_view_custom_layout"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="@dimen/dimen_fully_stretchable"
+        android:layout_height="@dimen/dimen_fully_stretchable"
+        android:layout_marginBottom="@dimen/extra_margin"
+        android:layout_marginEnd="@dimen/extra_margin"
+        android:layout_marginStart="@dimen/extra_margin"
+        android:layout_marginTop="@dimen/extra_margin"
+        app:cardCornerRadius="@dimen/card_view_corners"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_view">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/standard_margin">
+
+            <android.support.constraint.Guideline
+                android:id="@+id/guideline_p33_horiz_activity_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent=".25" />
+
+
+            <ImageView
+                android:id="@+id/iv_snapshot_activity_detail"
+                android:layout_width="@dimen/dimen_fully_stretchable"
+                android:layout_height="@dimen/dimen_fully_stretchable"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_p33_horiz_activity_detail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_name_activity_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/base_dimen_text_18"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline_p33_horiz_activity_detail"
+                tools:text="Name" />
+
+            <TextView
+                android:id="@+id/tv_age_activity_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:text="@string/tv_age_text"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_name_activity_detail" />
+
+            <TextView
+                android:id="@+id/tv_height_activity_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:text="@string/tv_height_text"
+                android:textColor="@android:color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tv_weight_activity_detail"
+                app:layout_constraintStart_toEndOf="@+id/tv_weight_activity_detail" />
+
+            <TextView
+                android:id="@+id/tv_haircolor_activity_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:text="@string/tv_haircolor_text"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_weight_activity_detail" />
+
+            <TextView
+                android:id="@+id/tv_weight_activity_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:text="@string/tv_weight_text"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_age_activity_detail" />
+
+            <ListView
+                android:id="@+id/lv_professions_activity_detail"
+                android:layout_width="@dimen/dimen_fully_stretchable"
+                android:layout_height="@dimen/dimen_fully_stretchable"
+                android:layout_marginBottom="@dimen/standard_margin"
+                android:layout_marginEnd="@dimen/reduced_margin"
+                android:layout_marginStart="@dimen/standard_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:background="@drawable/bg_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/lv_friends_activity_detail"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_haircolor_activity_detail" />
+
+            <ListView
+                android:id="@+id/lv_friends_activity_detail"
+                android:layout_width="@dimen/dimen_fully_stretchable"
+                android:layout_height="@dimen/dimen_fully_stretchable"
+                android:layout_marginBottom="@dimen/standard_margin"
+                android:layout_marginEnd="@dimen/standard_margin"
+                android:layout_marginStart="@dimen/reduced_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:background="@drawable/bg_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/lv_professions_activity_detail"
+                app:layout_constraintTop_toBottomOf="@+id/tv_haircolor_activity_detail" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.altran.towncodex.main
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +37,7 @@ class InhabitantsListAdapter(private var listener: (Inhabitant?) -> Unit, privat
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         dataList?.let {
-            holder?.tvName?.text = Html.fromHtml(it[position].name)
+            holder?.tvName?.text = it[position].name
             holder?.tvAge?.text = holder?.ctx?.getString(R.string.tv_age_text, it[position].age)
             holder?.tvWeight?.text = holder?.ctx?.getString(R.string.tv_weight_text, String.format("%.2f", it[position].weight))
             holder?.tvHeight?.text = holder?.ctx?.getString(R.string.tv_height_text, String.format("%.2f", it[position].height))
