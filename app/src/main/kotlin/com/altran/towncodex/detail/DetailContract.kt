@@ -1,19 +1,17 @@
 package com.altran.towncodex.detail
 
-/**
- * Created by pablo on 8/01/18.
- */
+import com.altran.towncodex.model.Inhabitant
+
 interface DetailContract {
     interface View {
-        fun showLoading()
-        fun hideLoading()
+        fun showInhabitantData(inhabitant: Inhabitant)
         fun showInfoMessage(msg: String)
     }
 
     interface Presenter {
         // User actions
-
+        fun backButtonClicked()
         // Model updates
-        fun onViewCreated()
+        fun onViewCreated(inhabitant: Inhabitant)
     }
 }
