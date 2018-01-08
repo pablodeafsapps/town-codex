@@ -3,6 +3,7 @@ package com.altran.towncodex.di
 import android.app.Application
 
 import com.altran.towncodex.BaseApplication
+import com.altran.towncodex.detail.DetailContract
 import com.altran.towncodex.main.MainContract
 
 import dagger.BindsInstance
@@ -17,6 +18,7 @@ import javax.inject.Singleton
         AppModule::class,
         MainModule::class,
         MainAbstractModule::class,
+        DetailAbstractModule::class,
         ActivityBuilderModule::class))
 interface AppComponent {
 
