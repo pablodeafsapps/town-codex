@@ -38,7 +38,7 @@ class InhabitantsListAdapter(private var listener: (Inhabitant?) -> Unit, privat
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         dataList?.let {
-            holder?.tvName?.text = Html.fromHtml(it[position].name)
+            holder?.tvName?.text = it[position].name
             holder?.tvAge?.text = holder?.ctx?.getString(R.string.tv_age_text, it[position].age)
             holder?.tvWeight?.text = holder?.ctx?.getString(R.string.tv_weight_text, String.format("%.2f", it[position].weight))
             holder?.tvHeight?.text = holder?.ctx?.getString(R.string.tv_height_text, String.format("%.2f", it[position].height))
