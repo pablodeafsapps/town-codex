@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Inhabitant(internal val id: Int, internal val name: String,
                       internal @SerializedName("thumbnail") val image: String,
-                      internal val age: Int, private val weight: Float, private val height: Float,
+                      internal val age: Int, internal val weight: Float, internal val height: Float,
                       internal @SerializedName("hair_color") val hairColor: String,
                       internal val professions: List<String>,
                       internal val friends: List<String>) : Parcelable {
