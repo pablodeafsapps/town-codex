@@ -19,6 +19,7 @@ buildscript {
         dagger2_version = '2.13'
         cicerone_version = '2.1.0'
         fuel_version = '1.12.0'
+        picasso_version = '2.5.2'
     }
     repositories {
         google()
