@@ -1,6 +1,8 @@
 package com.altran.towncodex.main
 
 import com.altran.towncodex.model.Inhabitant
+import com.github.kittinunf.fuel.core.FuelError
+import com.github.kittinunf.result.Result
 
 interface MainContract {
     interface View {
@@ -18,12 +20,6 @@ interface MainContract {
     }
 
     interface Interactor {
-        fun loadInhabitantsList()
-        fun setOutputEntity(interactorOutput: MainContract.InteractorOutput)
-    }
-
-    interface InteractorOutput {
-        fun onQuerySuccess(data: List<Inhabitant>)
-        fun onQueryError()
+        fun loadInhabitantsList(result: (Result<String, FuelError>) -> Unit)
     }
 }

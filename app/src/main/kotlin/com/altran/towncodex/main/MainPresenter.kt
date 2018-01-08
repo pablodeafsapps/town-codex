@@ -2,13 +2,23 @@ package com.altran.towncodex.main
 
 import android.app.Activity
 import android.widget.Toast
+
 import com.altran.towncodex.BaseApplication
 import com.altran.towncodex.di.DaggerAppComponent
 import com.altran.towncodex.model.Inhabitant
+import com.github.kittinunf.result.Result
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+
+import org.json.JSONObject
 
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor() : MainContract.Presenter, MainContract.InteractorOutput {
+class MainPresenter @Inject constructor() : MainContract.Presenter {
+
+    companion object {
+        val DEFAULT_TOWN_NAME = "Brastlewark"
+    }
 
     @Inject
     lateinit var view: MainContract.View
@@ -25,15 +35,26 @@ class MainPresenter @Inject constructor() : MainContract.Presenter, MainContract
 
     override fun onViewCreated() {
         view.showLoading()
-        interactor.setOutputEntity(this)
-        interactor.loadInhabitantsList()
+        interactor.loadInhabitantsList { queryResult ->
+            when (queryResult) {
+                is Result.Failure -> {
+                    Toast.makeText(view as Activity, "Unable to load data", Toast.LENGTH_SHORT).show()
+                }
+                is Result.Success -> {
+                    queryResult.component1()?.let {
+                        this.parseJsonResponse(it, DEFAULT_TOWN_NAME)
+                    }?.let {
+                        view.publishDataList(it)
+                    }
+                }
+            }
+        }
     }
 
-    override fun onQuerySuccess(data: List<Inhabitant>) {
-        Toast.makeText(view as Activity, "Success!!", Toast.LENGTH_SHORT).show()
-    }
+    private fun parseJsonResponse(resultString: String?, townName: String): List<Inhabitant>? {
+        val inhabitantsJsonObject = JSONObject(resultString)
+        val type = object : TypeToken<List<Inhabitant>>() {}.type
 
-    override fun onQueryError() {
-        Toast.makeText(view as Activity, "Error!!", Toast.LENGTH_SHORT).show()
+        return Gson().fromJson(inhabitantsJsonObject.getJSONArray(townName).toString(), type)
     }
 }

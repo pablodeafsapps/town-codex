@@ -30,7 +30,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         setContentView(R.layout.activity_main)
 
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-//        recyclerView.adapter = InhabitantsListAdapter({ inhabitant -> presenter.listItemClicked(inhabitant) }, null)
+        recyclerView.adapter = InhabitantsListAdapter({ inhabitant -> presenter.listItemClicked(inhabitant) }, null)
     }
 
     override fun onResume() {
@@ -49,7 +49,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun publishDataList(data: List<Inhabitant>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        (recyclerView.adapter as InhabitantsListAdapter).updateData(data)
     }
 
     override fun showInfoMessage(msg: String) {
