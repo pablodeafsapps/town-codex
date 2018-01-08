@@ -21,6 +21,7 @@ import dagger.android.AndroidInjection
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
+
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
@@ -28,10 +29,6 @@ import ru.terrakok.cicerone.commands.Forward
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View {
-
-    companion object {
-        val TAG = "MainActivity"
-    }
 
     private val navigator: Navigator? by lazy {
         object : Navigator {

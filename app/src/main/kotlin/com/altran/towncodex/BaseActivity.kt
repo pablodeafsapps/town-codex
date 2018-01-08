@@ -5,10 +5,6 @@ import android.support.v7.widget.Toolbar
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    companion object {
-        private val TAG: String = "BaseActivity"
-    }
-
     override fun onResume() {
         super.onResume()
 

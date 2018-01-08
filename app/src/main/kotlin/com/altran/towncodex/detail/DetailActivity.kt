@@ -6,18 +6,23 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+
 import com.altran.towncodex.BaseActivity
 import com.altran.towncodex.BaseApplication
 import com.altran.towncodex.R
 import com.altran.towncodex.model.Inhabitant
 import com.squareup.picasso.Picasso
+
 import dagger.android.AndroidInjection
+
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.listview_header.view.*
 import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
+
 import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Back
 import ru.terrakok.cicerone.commands.Command
+
 import javax.inject.Inject
 
 class DetailActivity : BaseActivity(), DetailContract.View {

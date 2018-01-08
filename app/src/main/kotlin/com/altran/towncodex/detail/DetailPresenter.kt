@@ -2,7 +2,9 @@ package com.altran.towncodex.detail
 
 import com.altran.towncodex.BaseApplication
 import com.altran.towncodex.model.Inhabitant
+
 import ru.terrakok.cicerone.Router
+
 import javax.inject.Inject
 
 class DetailPresenter @Inject constructor() : DetailContract.Presenter {
