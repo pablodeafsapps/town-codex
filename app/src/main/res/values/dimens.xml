@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="dimen_fully_stretchable">0dp</dimen>
+    <dimen name="base_dimen_2">2dp</dimen>
     <dimen name="base_dimen_4">4dp</dimen>
     <dimen name="base_dimen_8">8dp</dimen>
     <dimen name="base_dimen_16">16dp</dimen>
@@ -15,4 +16,5 @@
     <dimen name="card_view_default_height">@dimen/base_dimen_150</dimen>
     <dimen name="text_large">@dimen/base_dimen_text_18</dimen>
     <dimen name="reduced_margin">@dimen/base_dimen_4</dimen>
+    <dimen name="reduced_padding">@dimen/base_dimen_2</dimen>
 </resources>
