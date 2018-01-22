@@ -30,7 +30,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View {
 
-    private val navigator: Navigator? by lazy {
+    private val mainNavigator: Navigator? by lazy {
         object : Navigator {
 
             override fun applyCommand(command: Command) {
@@ -68,10 +68,12 @@ class MainActivity : BaseActivity(), MainContract.View {
     override fun onResume() {
         super.onResume()
         presenter.onViewCreated()
-        BaseApplication.INSTANCE.cicerone.navigatorHolder.setNavigator(navigator)
+        BaseApplication.INSTANCE.cicerone.navigatorHolder.setNavigator(mainNavigator)
     }
 
     override fun getToolbarInstance(): Toolbar? = toolbar
+
+    override fun getMenuResource(): Int? = R.menu.menu_options_main_activity
 
     override fun showLoading() {
         progressBar.visibility = View.VISIBLE

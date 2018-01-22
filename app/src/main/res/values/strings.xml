@@ -6,4 +6,5 @@
     <string name="tv_weight_text">Weight: %1$s</string>
     <string name="tv_haircolor_text">Hair color: %1$s</string>
     <string name="tv_header_text">%1$s</string>
+    <string name="menu_item_search_text">Search</string>
 </resources>
