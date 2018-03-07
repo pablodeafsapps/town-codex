@@ -25,7 +25,7 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun getMenuResource(): Int?
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean = this.getMenuResource()?.let {
-            MenuInflater(this).inflate(it, menu)
-            true
-        } ?: super.onCreateOptionsMenu(menu)
+        MenuInflater(this).inflate(it, menu)
+        true
+    } ?: super.onCreateOptionsMenu(menu)
 }

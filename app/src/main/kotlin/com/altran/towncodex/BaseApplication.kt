@@ -8,6 +8,8 @@ import com.altran.towncodex.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.Router
@@ -33,9 +35,15 @@ class BaseApplication : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
 
-        INSTANCE = this
         DaggerAppComponent.builder().application(this).build().inject(this)
         this.initCicerone()
+
+        Realm.init(this)
+        val realmConfig = RealmConfiguration.Builder()
+                .name("town-codex.realm")
+                .schemaVersion(0)
+                .build()
+        Realm.setDefaultConfiguration(realmConfig)
     }
 
     private fun BaseApplication.initCicerone() {

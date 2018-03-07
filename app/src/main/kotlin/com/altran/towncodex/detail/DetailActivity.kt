@@ -117,4 +117,3 @@ private fun ListView.addHeaderView(layoutInflater: LayoutInflater, title: String
     header.tv_header_listview_header.text = header.context.getString(R.string.tv_header_text, title)
     this.addHeaderView(header, null, false)
 }
-

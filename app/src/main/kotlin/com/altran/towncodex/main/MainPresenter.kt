@@ -37,12 +37,34 @@ class MainPresenter @Inject constructor() : MainContract.Presenter {
         router?.navigateTo(DetailActivity.TAG, inhabitant)
     }
 
+    override fun searchOptionClicked(isVisible: Boolean) {
+        view.enableSearchBox()
+    }
+
+    override fun hwBackButtonClicked(isVisible: Boolean) {
+        if (isVisible) {
+            view.disableSearchBox()
+        } else {
+            view.goBack()
+        }
+    }
+
+    override fun searchBoxUpdated(searchTerm: String) {
+        view.showLoading()
+        interactor.filterInhabitantList(searchTerm, { resultList ->
+            view.hideLoading()
+            view.publishDataList(resultList)
+        })
+    }
+
     override fun onViewCreated() {
         view.showLoading()
         interactor.loadInhabitantsList { queryResult ->
             when (queryResult) {
                 is Result.Failure -> {
                     Toast.makeText(view as Activity, "Unable to load data", Toast.LENGTH_SHORT).show()
+                    view.hideLoading()
+                    view.showNoDataWarning()
                 }
                 is Result.Success -> {
                     queryResult.component1()?.let {
