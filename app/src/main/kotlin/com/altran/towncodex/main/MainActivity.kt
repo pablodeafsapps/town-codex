@@ -19,8 +19,12 @@ import com.altran.towncodex.BaseApplication
 import com.altran.towncodex.R
 import com.altran.towncodex.detail.DetailActivity
 import com.altran.towncodex.model.Inhabitant
+import com.jakewharton.rxbinding2.widget.RxTextView
 
 import dagger.android.AndroidInjection
+
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_view_custom_layout.*
@@ -29,6 +33,7 @@ import ru.terrakok.cicerone.Navigator
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View {
@@ -74,12 +79,21 @@ class MainActivity : BaseActivity(), MainContract.View {
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         recyclerView.adapter = InhabitantsListAdapter({ inhabitant -> presenter.listItemClicked(inhabitant) }, null)
 
-
+        RxTextView.textChanges(searchBox)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(Schedulers.io())
+                .debounce(300, TimeUnit.MILLISECONDS)
+                .filter { it.length > 2 || it.isEmpty() }
+                .map { charSeq -> charSeq.toString() }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { str ->
+                    presenter.searchBoxUpdated(str)
+                }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.onViewCreated()
+        presenter.onViewCreated(searchBox.text.toString())
         BaseApplication.INSTANCE.cicerone.navigatorHolder.setNavigator(mainNavigator)
     }
 
@@ -103,8 +117,11 @@ class MainActivity : BaseActivity(), MainContract.View {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun showNoDataWarning() {
-        tvNoData.visibility = View.VISIBLE
+    override fun showNoDataWarning(show: Boolean) {
+        tvNoData.visibility = when (show) {
+            true -> View.VISIBLE
+            false -> View.GONE
+        }
     }
 
     override fun enableSearchBox() {
@@ -113,6 +130,10 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun disableSearchBox() {
         searchBox.visibility = View.GONE
+    }
+
+    override fun scrollToTop() {
+        recyclerView.layoutManager.smoothScrollToPosition(recyclerView, null, 0)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean =

@@ -11,9 +11,10 @@ interface MainContract {
         fun hideLoading()
         fun publishDataList(data: List<Inhabitant>)
         fun showInfoMessage(msg: String)
-        fun showNoDataWarning()
+        fun showNoDataWarning(show: Boolean)
         fun enableSearchBox()
         fun disableSearchBox()
+        fun scrollToTop()
         fun goBack()
     }
 
@@ -22,13 +23,12 @@ interface MainContract {
         fun listItemClicked(inhabitant: Inhabitant?)
         fun searchOptionClicked(isVisible: Boolean)
         fun hwBackButtonClicked(isVisible: Boolean)
-        fun searchBoxUpdated(searchTerm: String)
+        fun searchBoxUpdated(filterTerm: String)
         // Model updates
-        fun onViewCreated()
+        fun onViewCreated(filterTerm: String)
     }
 
     interface Interactor {
         fun loadInhabitantsList(result: (Result<String, FuelError>) -> Unit)
-        fun filterInhabitantList(searchTerm: String, result: (resultList: List<Inhabitant>) -> Unit)
     }
 }

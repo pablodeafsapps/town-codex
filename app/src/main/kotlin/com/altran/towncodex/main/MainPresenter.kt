@@ -20,7 +20,8 @@ import javax.inject.Inject
 class MainPresenter @Inject constructor() : MainContract.Presenter {
 
     companion object {
-        val DEFAULT_TOWN_NAME = "Brastlewark"
+        const val DEFAULT_TOWN_NAME = "Brastlewark"
+        const val NO_FILTER = ".*"
     }
 
     @Inject
@@ -38,7 +39,9 @@ class MainPresenter @Inject constructor() : MainContract.Presenter {
     }
 
     override fun searchOptionClicked(isVisible: Boolean) {
-        view.enableSearchBox()
+        if (!isVisible) {
+            view.enableSearchBox()
+        }
     }
 
     override fun hwBackButtonClicked(isVisible: Boolean) {
@@ -49,29 +52,41 @@ class MainPresenter @Inject constructor() : MainContract.Presenter {
         }
     }
 
-    override fun searchBoxUpdated(searchTerm: String) {
+    override fun searchBoxUpdated(filterTerm: String) {
         view.showLoading()
-        interactor.filterInhabitantList(searchTerm, { resultList ->
-            view.hideLoading()
-            view.publishDataList(resultList)
+        this.loadAndFilterList(filterTerm)
+        view.scrollToTop()
+    }
+
+    override fun onViewCreated(filterTerm: String) {
+        view.showLoading()
+        this.loadAndFilterList(when (filterTerm.isEmpty()) {
+            true -> NO_FILTER
+            false -> filterTerm
         })
     }
 
-    override fun onViewCreated() {
-        view.showLoading()
+    private fun loadAndFilterList(key: String) {
         interactor.loadInhabitantsList { queryResult ->
             when (queryResult) {
                 is Result.Failure -> {
                     Toast.makeText(view as Activity, "Unable to load data", Toast.LENGTH_SHORT).show()
                     view.hideLoading()
-                    view.showNoDataWarning()
+                    view.showNoDataWarning(true)
                 }
                 is Result.Success -> {
                     queryResult.component1()?.let {
                         this.parseJsonResponse(it, DEFAULT_TOWN_NAME)
                     }?.let {
-                        view.hideLoading()
-                        view.publishDataList(it)
+                        view.apply {
+                            hideLoading()
+                            val filteredList = it.filter {
+                                it.name.contains(Regex(key, RegexOption.IGNORE_CASE))
+                            }
+
+                            publishDataList(filteredList)
+                            showNoDataWarning(filteredList.isEmpty())
+                        }
                     }
                 }
             }
