@@ -29,26 +29,27 @@ class InhabitantsListAdapter(private var listener: (Inhabitant?) -> Unit, privat
 
     override fun getItemCount() = dataList?.size ?: 0
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // create a new view
-        val viewRow = LayoutInflater.from(parent?.context).inflate(R.layout.card_view_custom_layout, parent, false)
+        val viewRow = LayoutInflater.from(parent.context).inflate(R.layout.card_view_custom_layout, parent, false)
         return ViewHolder(viewRow)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         dataList?.let {
-            holder?.tvName?.text = it[position].name
-            holder?.tvAge?.text = holder?.ctx?.getString(R.string.tv_age_text, it[position].age)
-            holder?.tvWeight?.text = holder?.ctx?.getString(R.string.tv_weight_text, String.format("%.2f", it[position].weight))
-            holder?.tvHeight?.text = holder?.ctx?.getString(R.string.tv_height_text, String.format("%.2f", it[position].height))
-            Picasso.with(holder?.ivSnapshot?.context)
-                    .load(it[position].image).into(holder?.ivSnapshot)
-            holder?.itemView?.setOnClickListener { listener(dataList?.get(position)) }
+            holder.tvName?.text = it[position].name
+            holder.tvAge?.text = holder.ctx?.getString(R.string.tv_age_text, it[position].age)
+            holder.tvWeight?.text = holder.ctx?.getString(R.string.tv_weight_text, String.format("%.2f", it[position].weight))
+            holder.tvHeight?.text = holder.ctx?.getString(R.string.tv_height_text, String.format("%.2f", it[position].height))
+            Picasso.with(holder.ivSnapshot?.context)
+                    .load(it[position].image).into(holder.ivSnapshot)
+            holder.itemView?.setOnClickListener { listener(dataList?.get(position)) }
         }
     }
 
     fun updateData(list: List<Inhabitant>) {
         this.dataList = list
         this.notifyDataSetChanged()
+
     }
 }

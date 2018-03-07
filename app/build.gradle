@@ -3,14 +3,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'   // Anko
 apply plugin: 'kotlin-kapt'
+//apply plugin: 'realm-android'   // Realm
 
 android {
     compileSdkVersion rootProject.ext.compilesdk_version
     buildToolsVersion rootProject.ext.buildtools_version
     defaultConfig {
         applicationId "com.altran.towncodex"
-        minSdkVersion 19
-        targetSdkVersion 26
+        minSdkVersion rootProject.ext.minsdk_version
+        targetSdkVersion rootProject.ext.targetsdk_version
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -43,17 +44,18 @@ dependencies {
     // Including 3rd party libraries (Cicerone, Fuel, Gson, Picasso)
     implementation "ru.terrakok.cicerone:cicerone:$rootProject.ext.cicerone_version"
     implementation "com.github.kittinunf.fuel:fuel-android:$rootProject.ext.fuel_version"
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
     implementation "com.github.kittinunf.fuel:fuel-rxjava:$rootProject.ext.fuel_version"
     implementation "com.github.kittinunf.fuel:fuel-gson:$rootProject.ext.fuel_version"   // Gson parsing
     implementation "com.squareup.picasso:picasso:$rootProject.ext.picasso_version"
+    // Including RxJava 2 and RxKotlin
+    implementation "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlin_version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroid_version"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.rxbinding_version"
     //--- Dagger2 core dependencies
     implementation "com.google.dagger:dagger:$rootProject.ext.dagger2_version"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2_version"   // Only for Java
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.dagger2_version"
     //--- Dagger2 Android dependencies
     implementation "com.google.dagger:dagger-android-support:$rootProject.ext.dagger2_version"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.dagger2_version"   // Only for Java
     kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.dagger2_version"
     // Required -- JUnit 4 framework and Kotlin for testing
     testImplementation "junit:junit:$rootProject.ext.junit_version"

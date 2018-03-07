@@ -23,7 +23,6 @@ class MainInteractor @Inject constructor() : MainContract.Interactor {
         DaggerAppComponent.builder().application(BaseApplication.INSTANCE).build().inject(this)
     }
 
-
     override fun loadInhabitantsList(result: (Result<String, FuelError>) -> Unit) {
         url.httpGet().rx_responseString()
                 .subscribeOn(Schedulers.newThread())

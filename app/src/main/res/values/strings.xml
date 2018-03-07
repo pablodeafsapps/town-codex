@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">Town Codex</string>
-    // card view
+    <!-- card view -->
     <string name="tv_age_text">Age: %1$d</string>
     <string name="tv_height_text">Height: %1$s</string>
     <string name="tv_weight_text">Weight: %1$s</string>
     <string name="tv_haircolor_text">Hair color: %1$s</string>
     <string name="tv_header_text">%1$s</string>
+    <!-- search feature -->
+    <string name="tv_no_data_text">No data</string>
+    <string name="menu_item_search_text">Search</string>
+    <string name="et_hint_text">Search term…</string>
 </resources>
