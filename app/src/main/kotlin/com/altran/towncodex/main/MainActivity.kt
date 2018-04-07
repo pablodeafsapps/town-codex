@@ -65,7 +65,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
     @Inject
     lateinit var presenter: MainContract.Presenter
-    private val progressBar: ProgressBar by lazy { prog_bar_loading_jokes_activity_main }
+    private val progressBar: ProgressBar by lazy { prog_bar_loading_activity_main }
     private val toolbar: Toolbar by lazy { toolbar_toolbar_view }
     private val searchBox: EditText by lazy { et_search_box_toolbar_view }
     private val recyclerView: RecyclerView by lazy { rv_inhabitants_list_activity_main }

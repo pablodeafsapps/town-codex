@@ -17,7 +17,7 @@ import ru.terrakok.cicerone.Router
 
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor() : MainContract.Presenter {
+open class MainPresenter @Inject constructor() : MainContract.Presenter {
 
     companion object {
         const val DEFAULT_TOWN_NAME = "Brastlewark"
@@ -66,7 +66,7 @@ class MainPresenter @Inject constructor() : MainContract.Presenter {
         })
     }
 
-    private fun loadAndFilterList(key: String) {
+    fun loadAndFilterList(key: String) {
         interactor.loadInhabitantsList { queryResult ->
             when (queryResult) {
                 is Result.Failure -> {
@@ -81,7 +81,7 @@ class MainPresenter @Inject constructor() : MainContract.Presenter {
                         view.apply {
                             hideLoading()
                             val filteredList = it.filter {
-                                it.name.contains(Regex(key, RegexOption.IGNORE_CASE))
+                                it.name!!.contains(Regex(key, RegexOption.IGNORE_CASE))
                             }
 
                             publishDataList(filteredList)

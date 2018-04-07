@@ -10,4 +10,5 @@
     <string name="tv_no_data_text">No data</string>
     <string name="menu_item_search_text">Search</string>
     <string name="et_hint_text">Search term…</string>
+    <string name="iv_snapshot_content_description">snapshot</string>
 </resources>

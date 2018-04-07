@@ -2,13 +2,11 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/coordinator_layout_toolbar_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <!-- The 'AppBarLayout' object holds the 'Toolbar' and the 'TabLayout', declaring its own 'theme' (in this case, white font is used) -->
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar_toolbar_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
@@ -35,7 +33,6 @@
             tools:text="Name" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tab_layout_toolbar_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
