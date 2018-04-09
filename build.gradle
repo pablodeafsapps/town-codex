@@ -6,7 +6,7 @@ buildscript {
         compilesdk_version = 26
         minsdk_version = 16
         targetsdk_version = 26
-        buildtools_version = '27.0.3'
+        buildtools_version = '26.0.2'
         supportlibrary_version = '27.1.0'
         constraintlayout_version = '1.0.2'
         gradle_version = '3.0.1'
