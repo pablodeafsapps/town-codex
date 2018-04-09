@@ -6,7 +6,7 @@ buildscript {
         compilesdk_version = 26
         minsdk_version = 16
         targetsdk_version = 26
-        buildtools_version = '26.0.2'
+        buildtools_version = '27.0.3'
         supportlibrary_version = '27.1.0'
         constraintlayout_version = '1.0.2'
         gradle_version = '3.0.1'
@@ -31,7 +31,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$rootProject.ext.gradle_version"
+        classpath 'com.android.tools.build:gradle:3.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$rootProject.ext.kotlin_version"
 //        classpath "io.realm:realm-gradle-plugin:$rootProject.ext.realm_version"
 

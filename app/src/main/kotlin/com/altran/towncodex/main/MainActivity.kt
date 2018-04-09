@@ -129,6 +129,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun disableSearchBox() {
+        searchBox.text.clear()
         searchBox.visibility = View.GONE
     }
 

@@ -17,7 +17,7 @@ import ru.terrakok.cicerone.Router
 
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor() : MainContract.Presenter {
+open class MainPresenter @Inject constructor() : MainContract.Presenter {
 
     companion object {
         const val DEFAULT_TOWN_NAME = "Brastlewark"
@@ -93,7 +93,7 @@ class MainPresenter @Inject constructor() : MainContract.Presenter {
         }
     }
 
-    private fun parseJsonResponse(resultString: String?, townName: String): List<Inhabitant>? {
+    fun parseJsonResponse(resultString: String?, townName: String): List<Inhabitant>? {
         val inhabitantsJsonObject = JSONObject(resultString)
         val type = object : TypeToken<List<Inhabitant>>() {}.type
 
