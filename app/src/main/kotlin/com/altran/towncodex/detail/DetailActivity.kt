@@ -31,7 +31,7 @@ class DetailActivity : BaseActivity(), DetailContract.View {
         val TAG = "DetailActivity"
     }
 
-    private val navigator: Navigator? by lazy {
+    private val detailNavigator: Navigator? by lazy {
         object : Navigator {
             override fun applyCommand(command: Command) {
                 if (command is Back) {
@@ -70,17 +70,19 @@ class DetailActivity : BaseActivity(), DetailContract.View {
     override fun onResume() {
         super.onResume()
         // add back arrow to toolbar
-        supportActionBar?.let {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
         }
         // load invoking arguments
         val argument = intent.getParcelableExtra<Inhabitant>("inhabitant")
         argument?.let { presenter.onViewCreated(it) }
 
-        BaseApplication.INSTANCE.cicerone.navigatorHolder.setNavigator(navigator)
+        BaseApplication.INSTANCE.cicerone.navigatorHolder.setNavigator(detailNavigator)
     }
 
     override fun getToolbarInstance(): Toolbar? = toolbar
+
+    override fun getMenuResource(): Int? = null
 
     override fun showInhabitantData(inhabitant: Inhabitant) {
         Picasso.with(this).load(inhabitant.image).into(ivSnapshot)
@@ -115,4 +117,3 @@ private fun ListView.addHeaderView(layoutInflater: LayoutInflater, title: String
     header.tv_header_listview_header.text = header.context.getString(R.string.tv_header_text, title)
     this.addHeaderView(header, null, false)
 }
-

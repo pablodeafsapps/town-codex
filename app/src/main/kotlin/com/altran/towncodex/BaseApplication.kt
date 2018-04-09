@@ -17,7 +17,6 @@ import javax.inject.Inject
 class BaseApplication : Application(), HasActivityInjector {
 
     companion object {
-        private val TAG = "BaseApplication"
         lateinit var INSTANCE: BaseApplication
     }
 
@@ -33,9 +32,15 @@ class BaseApplication : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
 
-        INSTANCE = this
         DaggerAppComponent.builder().application(this).build().inject(this)
         this.initCicerone()
+
+//        Realm.init(this)
+//        val realmConfig = RealmConfiguration.Builder()
+//                .name("town-codex.realm")
+//                .schemaVersion(0)
+//                .build()
+//        Realm.setDefaultConfiguration(realmConfig)
     }
 
     private fun BaseApplication.initCicerone() {
